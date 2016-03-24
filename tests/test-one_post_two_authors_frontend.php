@@ -38,7 +38,7 @@ class Tests_One_Post_Two_Authors extends WP_UnitTestCase {
         setup_postdata(get_post($this->post_id));
     }
 
-//testing wpi_display_meta() and wpi_author_display_block() methods
+//testing wpi_display_meta and wpi_author_display_block methods
     public function test_post_content() {
 
         $author = array($this->author_id, $this->author_id_2);

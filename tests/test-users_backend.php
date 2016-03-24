@@ -3,7 +3,7 @@
 //testcase: one post and two authors created with factory class
 class Tests_Users_Backend extends WP_UnitTestCase {
 
-//testing wpi_add_meta() method   
+//testing wpi_add_meta method   
     public function test_add_meta_box() {
         global $wpdb;
         global $wp_meta_boxes;
@@ -43,5 +43,3 @@ class Tests_Users_Backend extends WP_UnitTestCase {
     }
 
 }
-
-?>

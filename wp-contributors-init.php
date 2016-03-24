@@ -23,8 +23,6 @@ class Wpi_Post_Init implements Interface_Meta_Box {
 
         $blogusers = get_users('role=author');
 
-
-
         if (empty($blogusers)) {
 
             return 0;
@@ -45,8 +43,6 @@ class Wpi_Post_Init implements Interface_Meta_Box {
         global $post;
 
         $custom_meta = get_post_meta($post->ID, '_custom-meta-box', true);
-
-
 
         wp_nonce_field('my_meta_box_nonce', 'meta_box_nonce');
 
@@ -99,7 +95,6 @@ class Wpi_Post_Init implements Interface_Meta_Box {
 
         if (isset($_POST['custom-meta-box'])) {
 
-            //$custom = esc_attr($_POST['custom-meta-box']);
 
             $custom = $_POST['custom-meta-box'];
 
