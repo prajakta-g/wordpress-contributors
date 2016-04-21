@@ -16,7 +16,7 @@ class Tests_One_Post_Two_Authors extends WP_UnitTestCase {
             'description' => 'test_author',
         ));
 
-
+        $user = new WP_User($this->author_id);
         $this->author_id_2 = self::factory()->user->create(array(
             'role' => 'author',
             'user_login' => 'test_author_two',
@@ -60,11 +60,16 @@ class Tests_One_Post_Two_Authors extends WP_UnitTestCase {
     }
 
     public function test_author_count() {
+//$user=new WP_User($this->author_id);
         $pinstance = new Wpi_Post_Init();
-        $value = $pinstance->wpi_get_all_authors();
-//checks for authors not equal to zero and equal to 2
-        $this->assertNotEquals(0, $value);
-        $this->assertCount(2, $value);
+        $post = get_post($this->post_id);
+        $author_id = $post->post_author;
+        $value = $pinstance->wpi_get_all_authors($author_id);
+//since there are three users in system one admin by default and two authors i.e. created .After excluding post author, one author and admin (with ID 1) remains.
+        $this->assertEquals(2, count($value));
+        $this->assertSame(1, (int) $value[0]->ID);
+        $this->assertNotSame($author_id, (int) $value[1]->ID);
+        $this->assertSame($this->author_id_2, (int) $value[1]->ID);
     }
 
 }

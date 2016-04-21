@@ -17,14 +17,14 @@ class Wpi_Post_Init implements Interface_Meta_Box {
         add_filter('the_content', array($this, 'wpi_display_meta'));
     }
 
-    public function wpi_get_all_authors() {
+    public function wpi_get_all_authors($author_id) {
 
         $blogusers = array();
 
-        $blogusers = get_users('role=author');
+		//change is here
+        $blogusers = get_users(array('role__in' => array('administrator', 'editor', 'author'), 'exclude' => array($author_id)));
 
         if (empty($blogusers)) {
-
             return 0;
         } else
             return $blogusers;
@@ -42,6 +42,8 @@ class Wpi_Post_Init implements Interface_Meta_Box {
 
         global $post;
 
+        $author_id = $post->post_author;
+
         $custom_meta = get_post_meta($post->ID, '_custom-meta-box', true);
 
         wp_nonce_field('my_meta_box_nonce', 'meta_box_nonce');
@@ -51,11 +53,10 @@ class Wpi_Post_Init implements Interface_Meta_Box {
             $custom_meta = array();
         }
 
-        $blogusers = $this->wpi_get_all_authors();
+        $blogusers = $this->wpi_get_all_authors($author_id);
 
         if (!$blogusers) {
-
-            echo "Currently no user with the role 'author' in the blog . Please create some authors.";
+            echo "Currently no user other than admin . Please create some authors/editors/admins.";
         } else {
 
             foreach ($blogusers as $user) {
