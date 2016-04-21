@@ -2,7 +2,7 @@
 This is a wordpress plugin, which facilitates in assigning and displaying more than one author on a post.
 
 ####On Admin side :
-It provides a metabox labelled 'Contributor', which contains list of all authors on post-editor page.
+It provides a metabox labelled 'Contributor', which contains list of all authors(Administrator/Editors/Authors except Post Author) on post-editor page.
 
 User (Admin/Editor/Author) can tick one or more authors from the list by checking the checkbox.
 
