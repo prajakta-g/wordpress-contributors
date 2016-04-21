@@ -16,7 +16,7 @@ class Tests_One_Post_Two_Authors extends WP_UnitTestCase {
             'description' => 'test_author',
         ));
 
-        $user = new WP_User($this->author_id);
+       
         $this->author_id_2 = self::factory()->user->create(array(
             'role' => 'author',
             'user_login' => 'test_author_two',
@@ -60,7 +60,6 @@ class Tests_One_Post_Two_Authors extends WP_UnitTestCase {
     }
 
     public function test_author_count() {
-//$user=new WP_User($this->author_id);
         $pinstance = new Wpi_Post_Init();
         $post = get_post($this->post_id);
         $author_id = $post->post_author;
